@@ -1,6 +1,6 @@
 angular.module('video-player')
   .component('app', {
-    controller() {
+    controller(youTube) {
       this.videos = window.exampleVideoData,
       this.currentVideo = window.exampleVideoData[0],
       this.selectVideo = (video) => {
@@ -8,24 +8,13 @@ angular.module('video-player')
         this.currentVideo = video;
       },
       this.searchResults = () => {};
+      youTube.search(results => {
+        this.selectVideo(results.data.items[0]);
+        // console.log('hellp', results.data.items);
+      });
     },
     
-    template:
-    `<div id="app container">
-      <nav class="navbar">
-        <div class="col-md-6 col-md-offset-3">
-          <search><h5><em>search</em> component goes here</h5></search>
-        </div>
-      </nav>
-      <div class="row">
-        <div class="col-md-7">
-          <video-player current-video="$ctrl.currentVideo"><h5><em>videoPlayer</em> component goes here</h5></video-player>
-        </div>
-        <div class="col-md-5">
-          <video-list videos="$ctrl.videos" select-video="$ctrl.selectVideo"><h5><em>videoList</em>{{videos}}</h5></video-list>
-        </div>
-      <div>
-    </div>`
+    templateUrl: '/src/templates/app.html'
   });
   
   
