@@ -1,7 +1,8 @@
 angular.module('video-player')
   .component('videoListEntry', {
     bindings: {
-      video: '<'
+      video: '<',
+      onClick: '<'
     },
     
     controller: function() {},
@@ -10,10 +11,10 @@ angular.module('video-player')
     template: 
     `<li class="video-list-entry media">
       <div class="media-left">
-        <img class="media-object" src="https://i.ytimg.com/vi/1w8Z0UOXVaY/default.jpg" />
+        <img class="media-object" ng-src={{$ctrl.video.snippet.thumbnails.default.url}} />
       </div>
       <div class="media-body">
-        <div class="video-list-entry-title">Video Title: {{$ctrl.video.snippet.title}} </div>
+        <div class="video-list-entry-title" ng-click="$ctrl.onClick()">Video Title: {{$ctrl.video.snippet.title}} </div>
         <div class="video-list-entry-detail">Video Description: {{$ctrl.video.snippet.description}}</div>
       </div>
     </li>

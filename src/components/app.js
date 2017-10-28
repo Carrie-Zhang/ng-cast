@@ -1,10 +1,10 @@
 angular.module('video-player')
   .component('app', {
     controller() {
-      this.videos = window.exampleVideoData;
-      this.selectVideo = () => {};
-      this.searchResults = () => {};
-      this.currentVideo = {};
+      this.videos = window.exampleVideoData,
+      this.selectVideo = () => {},
+      this.searchResults = () => {},
+      this.currentVideo = window.exampleVideoData[0];
     },
     
     template:
@@ -16,10 +16,10 @@ angular.module('video-player')
       </nav>
       <div class="row">
         <div class="col-md-7">
-          <video-player><h5><em>videoPlayer</em> component goes here</h5></video-player>
+          <video-player current-video="$ctrl.currentVideo"><h5><em>videoPlayer</em> component goes here</h5></video-player>
         </div>
         <div class="col-md-5">
-          <video-list videos="$ctrl.videos"><h5><em>videoList</em>{{videos}}</h5></video-list>
+          <video-list videos="$ctrl.videos on-click=$ctrl.selectVideo"><h5><em>videoList</em>{{videos}}</h5></video-list>
         </div>
       <div>
     </div>`
