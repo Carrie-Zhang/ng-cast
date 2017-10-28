@@ -2,9 +2,12 @@ angular.module('video-player')
   .component('app', {
     controller() {
       this.videos = window.exampleVideoData,
-      this.selectVideo = () => {},
-      this.searchResults = () => {},
-      this.currentVideo = window.exampleVideoData[0];
+      this.currentVideo = window.exampleVideoData[0],
+      this.selectVideo = (video) => {
+        console.log('in selectVideo function');
+        this.currentVideo = video;
+      },
+      this.searchResults = () => {};
     },
     
     template:
@@ -19,7 +22,7 @@ angular.module('video-player')
           <video-player current-video="$ctrl.currentVideo"><h5><em>videoPlayer</em> component goes here</h5></video-player>
         </div>
         <div class="col-md-5">
-          <video-list videos="$ctrl.videos on-click=$ctrl.selectVideo"><h5><em>videoList</em>{{videos}}</h5></video-list>
+          <video-list videos="$ctrl.videos" select-video="$ctrl.selectVideo"><h5><em>videoList</em>{{videos}}</h5></video-list>
         </div>
       <div>
     </div>`
